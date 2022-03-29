@@ -33,7 +33,7 @@ namespace TacoShop1
 
         }
 
-          int InsertProduct()
+          int InsertProduct() //This is the method for adding textbox values into the database
         {
             using (SqlConnection myConnection = new SqlConnection(ConnectionString))
             {
@@ -56,7 +56,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add( (rd[0].ToString() + rd[1].ToString()) );
-                InsertProduct();
+                InsertProduct(); //This is where I've been initializing the method
             }
             con.Close();
         }
