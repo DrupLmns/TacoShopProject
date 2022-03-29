@@ -20,3 +20,15 @@ create or alter procedure getSoda
 as
 select * from Drink where drink_name = 'Soda'
 return
+
+go 
+create or alter procedure getReceipts
+as
+select * from Receipt
+return
+
+go
+create or alter procedure lookupReceipt @receiptID int
+as
+Select * from Receipt where receipt_ID = @receiptID
+return

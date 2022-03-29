@@ -36,6 +36,8 @@ namespace TacoShop1
             this.ClearButton = new System.Windows.Forms.Button();
             this.SodaButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.create_receipt_button = new System.Windows.Forms.Button();
+            this.view_receipts_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TacoButton
@@ -64,11 +66,10 @@ namespace TacoShop1
             // 
             this.ReceiptBox.FormattingEnabled = true;
             this.ReceiptBox.ItemHeight = 15;
-            this.ReceiptBox.Location = new System.Drawing.Point(551, 61);
+            this.ReceiptBox.Location = new System.Drawing.Point(638, 12);
             this.ReceiptBox.Name = "ReceiptBox";
             this.ReceiptBox.Size = new System.Drawing.Size(120, 244);
             this.ReceiptBox.TabIndex = 2;
-            this.ReceiptBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // WaterButton
             // 
@@ -83,7 +84,7 @@ namespace TacoShop1
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(572, 311);
+            this.ClearButton.Location = new System.Drawing.Point(659, 262);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 4;
@@ -111,13 +112,34 @@ namespace TacoShop1
             this.label1.Size = new System.Drawing.Size(294, 31);
             this.label1.TabIndex = 6;
             this.label1.Text = "TacoShop POS Program";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Form1
+            // create_receipt_button
+            // 
+            this.create_receipt_button.Location = new System.Drawing.Point(638, 297);
+            this.create_receipt_button.Name = "create_receipt_button";
+            this.create_receipt_button.Size = new System.Drawing.Size(120, 49);
+            this.create_receipt_button.TabIndex = 7;
+            this.create_receipt_button.Text = "Create Receipt";
+            this.create_receipt_button.UseVisualStyleBackColor = true;
+            this.create_receipt_button.Click += new System.EventHandler(this.create_receipt_button_Click);
+            // 
+            // view_receipts_button
+            // 
+            this.view_receipts_button.Location = new System.Drawing.Point(638, 374);
+            this.view_receipts_button.Name = "view_receipts_button";
+            this.view_receipts_button.Size = new System.Drawing.Size(120, 49);
+            this.view_receipts_button.TabIndex = 8;
+            this.view_receipts_button.Text = "View Receipts";
+            this.view_receipts_button.UseVisualStyleBackColor = true;
+            this.view_receipts_button.Click += new System.EventHandler(this.view_receipts_button_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.view_receipts_button);
+            this.Controls.Add(this.create_receipt_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SodaButton);
             this.Controls.Add(this.ClearButton);
@@ -125,7 +147,7 @@ namespace TacoShop1
             this.Controls.Add(this.ReceiptBox);
             this.Controls.Add(this.BurritoButton);
             this.Controls.Add(this.TacoButton);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -142,6 +164,8 @@ namespace TacoShop1
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button SodaButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button create_receipt_button;
+        private System.Windows.Forms.Button view_receipts_button;
     }
 }
 

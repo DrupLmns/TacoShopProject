@@ -56,7 +56,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add( (rd[0].ToString() + rd[1].ToString()) );
-                InsertProduct();
+                //InsertProduct();
             }
             con.Close();
         }
@@ -71,7 +71,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add((rd[0].ToString() + rd[1].ToString()));
-                InsertProduct();
+                //InsertProduct();
             }
             con.Close();
         }
@@ -86,7 +86,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add((rd[0].ToString() + rd[1].ToString()));
-                InsertProduct();
+                //InsertProduct();
             }
             con.Close();
         }
@@ -101,7 +101,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add((rd[0].ToString() + rd[1].ToString()));
-                InsertProduct();
+                //InsertProduct();
             }
             con.Close();
         }
@@ -110,14 +110,31 @@ namespace TacoShop1
             ReceiptBox.Items.Clear();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void create_receipt_button_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void view_receipts_button_Click(object sender, EventArgs e)
         {
+            dim myValue as String = InputBox("Enter Value", "Enter Value", "Please Enter Value");
 
+            String s = "";
+            cmd = new SqlCommand("lookupReceipt", con);//first is the procedure, second is the connection to the sqlserver
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@receiptID", SqlDbType.Int).Value = 1;
+
+
+            con.Open();//Open connection to database
+            rd = cmd.ExecuteReader(); //executes the procedure
+            while (rd.Read())//loops through all returned values,
+            {
+                
+                s += "\n" + rd[0].ToString() + "|" + rd[1].ToString() + "|" + rd[2].ToString() + "|" + rd[3].ToString() + "|" + rd[4].ToString();
+            }
+            con.Close();
+
+
+            System.Windows.Forms.MessageBox.Show(s);
         }
     }
 }
