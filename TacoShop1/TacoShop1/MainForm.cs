@@ -33,7 +33,7 @@ namespace TacoShop1
 
         }
 
-          int InsertProduct()
+          int InsertProduct() //This is the method for adding textbox values into the database
         {
             using (SqlConnection myConnection = new SqlConnection(ConnectionString))
             {
@@ -56,7 +56,6 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add( (rd[0].ToString() + rd[1].ToString()) );
-                //InsertProduct();
             }
             con.Close();
         }
@@ -116,12 +115,11 @@ namespace TacoShop1
         }
         private void view_receipts_button_Click(object sender, EventArgs e)
         {
-            dim myValue as String = InputBox("Enter Value", "Enter Value", "Please Enter Value");
 
             String s = "";
             cmd = new SqlCommand("lookupReceipt", con);//first is the procedure, second is the connection to the sqlserver
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@receiptID", SqlDbType.Int).Value = 1;
+            cmd.Parameters.Add("@receiptID", SqlDbType.Int).Value = 3;
 
 
             con.Open();//Open connection to database
@@ -129,7 +127,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 
-                s += "\n" + rd[0].ToString() + "|" + rd[1].ToString() + "|" + rd[2].ToString() + "|" + rd[3].ToString() + "|" + rd[4].ToString();
+                s += "\nID: " + rd[0].ToString() + "\n|Name: " + rd[1].ToString() + "\n|Ordered food: " + rd[2].ToString() + "\n|Tax: " + rd[3].ToString() + "\n|Total: " + rd[4].ToString();
             }
             con.Close();
 
