@@ -33,17 +33,30 @@ namespace TacoShop1
 
         }
 
+          int InsertProduct()
+        {
+            using (SqlConnection myConnection = new SqlConnection(ConnectionString))
+            {
+                SqlCommand MyCommand = new SqlCommand("INSERT INTO TacoShop1.dbo.Receipt (choices) Values (@Column1)", myConnection);
+                MyCommand.Parameters.AddWithValue("@Column1", ReceiptBox.Text);
+                myConnection.Open();
+                return MyCommand.ExecuteNonQuery();
+
+            }
+        }
+
         private void TacoButton_Click(object sender, EventArgs e)
         {
             cmd = new SqlCommand("getTaco", con);//first is the procedure, second is the connection to the sqlserver
             cmd.CommandType = CommandType.StoredProcedure; 
-
+            
 
             con.Open();//Open connection to database
             rd = cmd.ExecuteReader(); //executes the procedure
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add( (rd[0].ToString() + rd[1].ToString()) );
+                InsertProduct();
             }
             con.Close();
         }
@@ -58,6 +71,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add((rd[0].ToString() + rd[1].ToString()));
+                InsertProduct();
             }
             con.Close();
         }
@@ -72,6 +86,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add((rd[0].ToString() + rd[1].ToString()));
+                InsertProduct();
             }
             con.Close();
         }
@@ -86,6 +101,7 @@ namespace TacoShop1
             while (rd.Read())//loops through all returned values,
             {
                 ReceiptBox.Items.Add((rd[0].ToString() + rd[1].ToString()));
+                InsertProduct();
             }
             con.Close();
         }
