@@ -132,6 +132,9 @@ namespace TacoShop1
             this.view_receipts_button.Text = "View Receipts";
             this.view_receipts_button.UseVisualStyleBackColor = true;
             this.view_receipts_button.Click += new System.EventHandler(this.view_receipts_button_Click);
+       
+
+
             // 
             // MainForm
             // 
