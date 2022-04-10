@@ -72,6 +72,13 @@ namespace TacoShop1
 
             SqlCommand insert = new SqlCommand("insert into TacoShop.dbo.Receipt(choices) values(@choices)", con);
             insert.Parameters.AddWithValue("@choices", ReceiptBox.Text);
+            
+            try
+            {
+                con.Open();
+                insert.ExecuteNonQuery();
+                MessageBox.Show("Register done !");
+            }
         
         }
         private void view_receipts_button_Click(object sender, EventArgs e)
