@@ -60,6 +60,19 @@ namespace TacoShop1
 
         private void create_receipt_button_Click(object sender, EventArgs e)
         {
+            String ConnectionString = "Data Source = desktop-7r935i1;"
+            + "Initial Catalog=TacoShop;"
+            + "User id=user;"
+            + "Password=abc123;";
+
+            SqlConnection con;
+
+
+            con = new SqlConnection(ConnectionString);
+
+            SqlCommand insert = new SqlCommand("insert into TacoShop.dbo.Receipt(choices) values(@choices)", con);
+            insert.Parameters.AddWithValue("@choices", ReceiptBox.Text);
+        
         }
         private void view_receipts_button_Click(object sender, EventArgs e)
         {
