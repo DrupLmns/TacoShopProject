@@ -67,20 +67,31 @@ namespace TacoShop1
 
             SqlConnection con;
 
-
-            con = new SqlConnection(ConnectionString);
-
-            SqlCommand insert = new SqlCommand("insert into TacoShop.dbo.Receipt(choices) values(@choices)", con);
-            insert.Parameters.AddWithValue("@choices", ReceiptBox.Text);
-            
-            try
+            if (ReceiptBox.Items.Count != 0)
             {
-                con.Open();
-                insert.ExecuteNonQuery();
-                MessageBox.Show("Register done !");
+
+                con = new SqlConnection(ConnectionString);
+
+                string sqlstring = "insert into TacoShop.dbo.Receipt(choices) values(@choices)";
+                
+
+                foreach (string choice in ReceiptBox.Items)
+                {
+                    SqlCommand insert = new SqlCommand(sqlstring, con);
+                    insert.Parameters.AddWithValue("@choices", choice);
+                    con.Open();
+                    insert.ExecuteNonQuery();
+                    con.Close();
+                }
+                MessageBox.Show("Records inserted succesfully.");
             }
-        
+            else
+            {
+                MessageBox.Show("Error!!!");
+            }    
         }
+        
+        
         private void view_receipts_button_Click(object sender, EventArgs e)
         {
             receipt.Show(this);
