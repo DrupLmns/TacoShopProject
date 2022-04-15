@@ -38,6 +38,10 @@ namespace TacoShop1
             this.label1 = new System.Windows.Forms.Label();
             this.create_receipt_button = new System.Windows.Forms.Button();
             this.view_receipts_button = new System.Windows.Forms.Button();
+            this.taxBox = new System.Windows.Forms.Label();
+            this.totalBox = new System.Windows.Forms.Label();
+            this.taxLabel = new System.Windows.Forms.Label();
+            this.totalLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TacoButton
@@ -64,11 +68,12 @@ namespace TacoShop1
             // 
             // ReceiptBox
             // 
+            this.ReceiptBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ReceiptBox.FormattingEnabled = true;
-            this.ReceiptBox.ItemHeight = 15;
-            this.ReceiptBox.Location = new System.Drawing.Point(638, 12);
+            this.ReceiptBox.ItemHeight = 21;
+            this.ReceiptBox.Location = new System.Drawing.Point(563, 12);
             this.ReceiptBox.Name = "ReceiptBox";
-            this.ReceiptBox.Size = new System.Drawing.Size(120, 244);
+            this.ReceiptBox.Size = new System.Drawing.Size(225, 235);
             this.ReceiptBox.TabIndex = 2;
             // 
             // WaterButton
@@ -84,7 +89,7 @@ namespace TacoShop1
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(659, 262);
+            this.ClearButton.Location = new System.Drawing.Point(637, 301);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 4;
@@ -115,7 +120,7 @@ namespace TacoShop1
             // 
             // create_receipt_button
             // 
-            this.create_receipt_button.Location = new System.Drawing.Point(638, 297);
+            this.create_receipt_button.Location = new System.Drawing.Point(616, 330);
             this.create_receipt_button.Name = "create_receipt_button";
             this.create_receipt_button.Size = new System.Drawing.Size(120, 49);
             this.create_receipt_button.TabIndex = 7;
@@ -125,22 +130,59 @@ namespace TacoShop1
             // 
             // view_receipts_button
             // 
-            this.view_receipts_button.Location = new System.Drawing.Point(638, 374);
+            this.view_receipts_button.Location = new System.Drawing.Point(616, 385);
             this.view_receipts_button.Name = "view_receipts_button";
             this.view_receipts_button.Size = new System.Drawing.Size(120, 49);
             this.view_receipts_button.TabIndex = 8;
             this.view_receipts_button.Text = "View Receipts";
             this.view_receipts_button.UseVisualStyleBackColor = true;
             this.view_receipts_button.Click += new System.EventHandler(this.view_receipts_button_Click);
-       
-
-
+            // 
+            // taxBox
+            // 
+            this.taxBox.AutoSize = true;
+            this.taxBox.Location = new System.Drawing.Point(563, 262);
+            this.taxBox.Name = "taxBox";
+            this.taxBox.Size = new System.Drawing.Size(30, 15);
+            this.taxBox.TabIndex = 9;
+            this.taxBox.Text = "TAX:";
+            // 
+            // totalBox
+            // 
+            this.totalBox.AutoSize = true;
+            this.totalBox.Location = new System.Drawing.Point(563, 277);
+            this.totalBox.Name = "totalBox";
+            this.totalBox.Size = new System.Drawing.Size(42, 15);
+            this.totalBox.TabIndex = 10;
+            this.totalBox.Text = "TOTAL:";
+            // 
+            // taxLabel
+            // 
+            this.taxLabel.AutoSize = true;
+            this.taxLabel.Location = new System.Drawing.Point(760, 263);
+            this.taxLabel.Name = "taxLabel";
+            this.taxLabel.Size = new System.Drawing.Size(28, 15);
+            this.taxLabel.TabIndex = 11;
+            this.taxLabel.Text = "0.00";
+            // 
+            // totalLabel
+            // 
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.Location = new System.Drawing.Point(760, 277);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(28, 15);
+            this.totalLabel.TabIndex = 12;
+            this.totalLabel.Text = "0.00";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.totalLabel);
+            this.Controls.Add(this.taxLabel);
+            this.Controls.Add(this.totalBox);
+            this.Controls.Add(this.taxBox);
             this.Controls.Add(this.view_receipts_button);
             this.Controls.Add(this.create_receipt_button);
             this.Controls.Add(this.label1);
@@ -169,6 +211,10 @@ namespace TacoShop1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button create_receipt_button;
         private System.Windows.Forms.Button view_receipts_button;
+        private System.Windows.Forms.Label taxBox;
+        private System.Windows.Forms.Label totalBox;
+        private System.Windows.Forms.Label taxLabel;
+        private System.Windows.Forms.Label totalLabel;
     }
 }
 

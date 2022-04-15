@@ -5,18 +5,12 @@ CREATE DATABASE TacoShop;
 
 go
 use TacoShop;
-CREATE TABLE TacoShop.dbo.Food(
-	food_ID int NOT NULL,
-	food_name nchar(10) NOT NULL,
-	food_price money NOT NULL,
-	PRIMARY KEY (food_ID)
+CREATE TABLE TacoShop.dbo.Item(
+	item_ID int NOT NULL,
+	item_name nchar(10) NOT NULL,
+	item_price money NOT NULL,
+	PRIMARY KEY (item_ID)
 	);
-CREATE TABLE TacoShop.dbo.Drink(
-	drink_ID int NOT NULL,
-	drink_name nchar(10) NOT NULL,
-	drink_price money NOT NULL
-	PRIMARY KEY (drink_ID)
-);
 
 Create TABLE TacoShop.dbo.Receipt(
 	receipt_ID int NOT NULL,
@@ -28,17 +22,17 @@ Create TABLE TacoShop.dbo.Receipt(
 	PRIMARY KEY (receipt_ID)
 );
 
-INSERT INTO TacoShop.dbo.Food (food_ID, food_name, food_price) 
+INSERT INTO TacoShop.dbo.Item (item_ID, item_name, item_price) 
 VALUES (1,'Burrito', 3.50);
 
-INSERT INTO TacoShop.dbo.Food (food_ID, food_name, food_price) 
+INSERT INTO TacoShop.dbo.Item (item_ID, item_name, item_price) 
 VALUES (2,'Taco', 1.50);
 
-INSERT INTO TacoShop.dbo.Drink (drink_ID, drink_name, drink_price) 
-VALUES (1,'Water', 1.50);
+INSERT INTO TacoShop.dbo.Item (item_ID, item_name, item_price) 
+VALUES (3,'Water', 1.50);
 
-INSERT INTO TacoShop.dbo.Drink (drink_ID, drink_name, drink_price) 
-VALUES (2,'Soda', 2.00);
+INSERT INTO TacoShop.dbo.Item (item_ID, item_name, item_price) 
+VALUES (4,'Soda', 2.00);
 
 INSERT INTO TacoShop.dbo.Receipt(receipt_ID, customer_name, choices, tax, tip, full_price) VALUES (1, 'Thomas', 
 'Burrito 3.50,Taco 1.50,2x Water 1.50'
@@ -66,25 +60,25 @@ use TacoShop
 go
 create or alter procedure getTaco
 as
-select * from Food where food_name = 'Taco'
+select * from Item where item_name = 'Taco'
 return
 go
 
 create or alter procedure getBurrito
 as
-select * from Food where food_name = 'Burrito'
+select * from Item where item_name = 'Burrito'
 return
 
 go
 create or alter procedure getWater
 as
-select * from Drink where drink_name = 'Water'
+select * from Item where item_name = 'Water'
 return
 
 go
 create or alter procedure getSoda
 as
-select * from Drink where drink_name = 'Soda'
+select * from Item where item_name = 'Soda'
 return
 
 go 

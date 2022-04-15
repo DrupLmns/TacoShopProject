@@ -20,3 +20,7 @@ TacoShop1/.vs/TacoShop1/DesignTimeBuild/.dtbcache.v2
 *.editorconfig
 *.dll
 *.json
+*.editorconfig
+*.cache
+*.json
+*.txt

@@ -6,6 +6,7 @@ using System.Data;
 using System.Collections;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using TacoShop;
 
 namespace TacoShop
 {
@@ -21,8 +22,12 @@ namespace TacoShop
         SqlDataReader rd;
         string s;
         
-        public String returnFoodItem(string query) //Insert the food procedure in query to return that food
+        public Item returnFoodItem(string query) //Insert the food procedure in query to return that food
         {
+            int ItemID = 0;
+            String ItemName = "";
+            Double ItemPrice = 0;
+
             con = new SqlConnection(ConnectionString);
             cmd = new SqlCommand(query, con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -33,14 +38,18 @@ namespace TacoShop
             s = "";
             while (rd.Read())//loops through all returned rows
             {
-                for (int i = 0; i < rd.FieldCount; i++)
-                {
-                    s += rd[i].ToString(); //loops through all returned cells and adds them to a string
-                }
+                String ItemIDtemp = rd[0].ToString();
+                ItemID = Int32.Parse(ItemIDtemp);
+
+                ItemName = rd[1].ToString();
+
+                String ItemPricetemp = rd[2].ToString();
+                ItemPrice = Double.Parse(ItemPricetemp);
             }
             con.Close();
 
-            return s;
+            Item i = new Item(ItemID, ItemName, ItemPrice);
+            return i;
         }
         public ArrayList lookupReceipt(String id) //Insert the receipt id to return that specific receipt
         {
