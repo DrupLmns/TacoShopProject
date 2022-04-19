@@ -88,6 +88,8 @@ namespace TacoShop1
             + "Password=abc123;";
 
             SqlConnection con;
+            
+            
 
             if (ReceiptBox.Items.Count != 0)
             {
@@ -96,10 +98,41 @@ namespace TacoShop1
 
                 string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID,choices) values(21, @choices)";
                 
+                  var list = new List<string>();
+
+                List<int> listID = new List<int>();
+
+                int IDnumber;
+                Random IDgenerator = new Random();
+                IDnumber = IDgenerator.Next(4, 20); //Working on a way to stop duplicates. Code below is an attempt that worked at preventing it, but made adding the value to the table incredibly hard.
+
+
+
+
+                foreach (string choice in ReceiptBox.Items)
+                {
+                    list = choice.Split(',').ToList();
+                   
+
+                    //The following code doesn't error out, just sorta...breaks it. And makes my CPU scream.
+                 /*   for (int i = 0; i < 2; i++)
+                    {
+                        do
+                        {
+                            IDnumber = IDgenerator.Next(4, 10);
+                        } while (!listID.Contains(IDnumber));
+                        listID.Add(IDnumber);
+                    }
+
+                    foreach (int ID in listID) {
+                        same kinda gobbly goo as in the below code
+                       
+                    } */
 
                 foreach (string choice in ReceiptBox.Items)
                 {
                     SqlCommand insert = new SqlCommand(sqlstring, con);
+                     insert.Parameters.AddWithValue("@ID", IDnumber);
                     insert.Parameters.AddWithValue("@choices", choice);
                     con.Open();
                     insert.ExecuteNonQuery();
