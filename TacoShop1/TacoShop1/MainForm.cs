@@ -129,7 +129,7 @@ namespace TacoShop1
                        
                     } */
 
-                foreach (string choice in ReceiptBox.Items)
+                foreach (string items in list)
                 {
                     SqlCommand insert = new SqlCommand(sqlstring, con);
                      insert.Parameters.AddWithValue("@ID", IDnumber);
