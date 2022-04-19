@@ -96,7 +96,7 @@ namespace TacoShop1
 
                 con = new SqlConnection(ConnectionString);
 
-                string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID,choices) values(21, @choices)";
+                string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID,choices) values(@ID, @choices)";
                 
                   var list = new List<string>();
 
