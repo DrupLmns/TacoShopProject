@@ -86,65 +86,57 @@ namespace TacoShop1
             + "Initial Catalog=TacoShop;"
             + "User id=user;"
             + "Password=abc123;";
-
+            
             SqlConnection con;
-            
-            
+            double placeHolderTip = 0.15;
+            var list = new List<string>();
+            Random IDgenerator = new Random();              
+            string nameText = nametextBox.Text;
+            List<int> listsortedID = IDGeneratorList(IDgenerator);
 
             if (ReceiptBox.Items.Count != 0)
             {
-
+                
                 con = new SqlConnection(ConnectionString);
 
-                string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID,choices) values(@ID, @choices)";
-                
-                  var list = new List<string>();
+                string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID, customer_name, choices, tax, tip, full_price) values(@ID, @Name, @choices, @tax, @tip, @finaltotal)";
 
-                List<int> listID = new List<int>();
-
-                int IDnumber;
-                Random IDgenerator = new Random();
-                IDnumber = IDgenerator.Next(4, 20); //Working on a way to stop duplicates. Code below is an attempt that worked at preventing it, but made adding the value to the table incredibly hard.
-
-
-
-
-                foreach (string choice in ReceiptBox.Items)
+                //Inserting parameter strings
+                using (SqlCommand insert = new SqlCommand(sqlstring, con))
                 {
-                    list = choice.Split(',').ToList();
-                   
-
-                    //The following code doesn't error out, just sorta...breaks it. And makes my CPU scream.
-                 /*   for (int i = 0; i < 2; i++)
-                    {
-                        do
-                        {
-                            IDnumber = IDgenerator.Next(4, 10);
-                        } while (!listID.Contains(IDnumber));
-                        listID.Add(IDnumber);
-                    }
-
-                    foreach (int ID in listID) {
-                        same kinda gobbly goo as in the below code
-                       
-                    } */
-
-                foreach (string items in list)
-                {
-                    SqlCommand insert = new SqlCommand(sqlstring, con);
-                     insert.Parameters.AddWithValue("@ID", IDnumber);
-                    insert.Parameters.AddWithValue("@choices", choice);
+                    insert.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    insert.Parameters.AddWithValue("@Name", SqlDbType.NChar).Value = nameText;
+                    insert.Parameters.AddWithValue("@choices", SqlDbType.VarChar);                  
+                    insert.Parameters.AddWithValue("@tax", SqlDbType.Money).Value = Tax;
+                    insert.Parameters.AddWithValue("@tip", SqlDbType.Money).Value = placeHolderTip;
+                    insert.Parameters.AddWithValue("@finaltotal", SqlDbType.Money).Value = Total;
                     con.Open();
-                    insert.ExecuteNonQuery();
-                    con.Close();
+
+                    //Assigning the int values from the list to the parameter 
+                    foreach (int IDnumber in listsortedID)
+                    {
+                        insert.Parameters["@ID"].Value = IDnumber;                     
+                    }
+                    
+                    //This is for splitting the strings with a comma
+                    foreach (string choice in ReceiptBox.Items) {
+                        list = choice.Split(',').ToList();
+                        foreach (string items in list) {
+                            insert.Parameters["@choices"].Value = items;
+                            insert.ExecuteNonQuery();
+                        }
+                    }                 
+                    con.Close();                                  
                 }
                 MessageBox.Show("Records inserted succesfully.");
             }
             else
             {
                 MessageBox.Show("Error!!!");
-            }    
+            }
         }
+        
+
         
         
         private void view_receipts_button_Click(object sender, EventArgs e)
@@ -201,6 +193,25 @@ namespace TacoShop1
             {
                 ReceiptBox.Items.Add(receiptList[i].name + " x" + receiptList[i].ammount + " $" + receiptList[i].price);
             }
+        }
+        
+            public List<int> IDGeneratorList(Random IDgenerator)
+        {
+
+            List<int> listID = new List<int>();
+            int IDnumber;
+
+            for (int i = 0; i < 2; i++)
+            {
+                do
+                {
+                    IDnumber = IDgenerator.Next(4, 20);
+                } while (!listID.Contains(IDnumber));
+                listID.Add(IDnumber);
+            }
+
+            return listID;
+
         }
     }
 }
