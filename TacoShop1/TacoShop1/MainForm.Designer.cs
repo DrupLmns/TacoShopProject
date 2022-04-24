@@ -42,6 +42,7 @@ namespace TacoShop1
             this.totalBox = new System.Windows.Forms.Label();
             this.taxLabel = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
+            this.nametextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // TacoButton
@@ -174,11 +175,20 @@ namespace TacoShop1
             this.totalLabel.TabIndex = 12;
             this.totalLabel.Text = "0.00";
             // 
+            // nametextBox
+            // 
+            this.nametextBox.Location = new System.Drawing.Point(43, 67);
+            this.nametextBox.Name = "nametextBox";
+            this.nametextBox.Size = new System.Drawing.Size(322, 23);
+            this.nametextBox.TabIndex = 13;
+            this.nametextBox.Text = "Name of Order Here";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.nametextBox);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.taxLabel);
             this.Controls.Add(this.totalBox);
@@ -215,6 +225,7 @@ namespace TacoShop1
         private System.Windows.Forms.Label totalBox;
         private System.Windows.Forms.Label taxLabel;
         private System.Windows.Forms.Label totalLabel;
+        private System.Windows.Forms.TextBox nametextBox;
     }
 }
 
