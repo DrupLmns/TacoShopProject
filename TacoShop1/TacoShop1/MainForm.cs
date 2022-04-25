@@ -110,32 +110,31 @@ namespace TacoShop1
             string nameText = nametextBox.Text;
             int IDnumber;
             IDnumber = IDgenerator.Next(30, 50); //You can change these parameters for the number limitations to whatever. This was just to ensure no duplicates for the trial run.
-
+            Regex trimmer = new Regex(@"\s\s+"); //This trims out the white space on inserts, letting you put more. 
+//The way this is now, you can store up to three values in one cell.
+            string allItems = string.Join(",", ReceiptBox.Items.OfType<object>());
+            allItems = allItems.TrimEnd();
+            allItems = trimmer.Replace(allItems, " ");
+            
+            
             if (ReceiptBox.Items.Count != 0)
             {
                 
                 con = new SqlConnection(ConnectionString);
 
                 string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID, customer_name, choices, tax, tip, full_price) values(@ID, @Name, @choices, @tax, @tip, @finaltotal)";
-
+                 
                 //Inserting parameter strings
                 using (SqlCommand insert = new SqlCommand(sqlstring, con))
                 {
                     insert.Parameters.AddWithValue("@ID", SqlDbType.Int).Value = IDnumber;
                     insert.Parameters.AddWithValue("@Name", SqlDbType.NChar).Value = nameText;
-                    insert.Parameters.AddWithValue("@choices", SqlDbType.VarChar);                  
+                    insert.Parameters.AddWithValue("@choices", SqlDbType.VarChar).Value = allItems;                  
                     insert.Parameters.AddWithValue("@tax", SqlDbType.Money).Value = Tax;
                     insert.Parameters.AddWithValue("@tip", SqlDbType.Money).Value = placeHolderTip;
                     insert.Parameters.AddWithValue("@finaltotal", SqlDbType.Money).Value = Total;
                     con.Open();
-                   
-                    //This is for splitting the strings with a comma
-                    foreach (string choice in ReceiptBox.Items) {
-                        list = choice.Split(',').ToList();
-                        foreach (string items in list) {
-                            insert.Parameters["@choices"].Value = items;                           
-                        }
-                    }   
+                      
                     insert.ExecuteNonQuery();
                     con.Close();                                  
                 }
