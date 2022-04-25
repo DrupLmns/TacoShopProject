@@ -5,6 +5,15 @@ CREATE DATABASE TacoShop;
 
 go
 use TacoShop;
+CREATE TABLE TacoShop.dbo.Employees(
+	Employee_ID int NOT NULL,
+	Employee_Name nchar(10) NOT NULL,
+	Employee_Username nvarchar(50) NOT NULL,
+	Employee_Password nvarchar(128) NOT NULL,
+	IsAdmin int NOT NULL,
+	PRIMARY KEY (Employee_ID)
+);
+
 CREATE TABLE TacoShop.dbo.Item(
 	item_ID int NOT NULL,
 	item_name nchar(10) NOT NULL,
@@ -21,6 +30,11 @@ Create TABLE TacoShop.dbo.Receipt(
 	full_price money null,
 	PRIMARY KEY (receipt_ID)
 );
+INSERT INTO TacoShop.dbo.Employees(Employee_ID,Employee_Name,Employee_Username,Employee_Password, IsAdmin)
+Values ( 1, 'James','jamie01', '6ca13d52ca70c883e0f0bb101e425a89e8624de51db2d2392593af6a84118090', 1 )
+									--abc123													 --true
+INSERT INTO TacoShop.dbo.Employees(Employee_ID,Employee_Name,Employee_Username,Employee_Password, IsAdmin)
+Values ( 1, 'Maggie','HomerSimpson420', 'ede7d1a08219bc413487044028f2c640d4c29bc4f68c79013a29575286a7a30a', 0 )
 
 INSERT INTO TacoShop.dbo.Item (item_ID, item_name, item_price) 
 VALUES (1,'Burrito', 3.50);
@@ -112,4 +126,29 @@ as
 	BEGIN
 		Return -1;
 	END
+return
+
+go
+create or alter procedure EmployeeLogin @username nchar(50), @password nchar(128)
+as
+	IF EXISTS (Select * from Employees where Employee_Username = @username and Employee_Password = @password)
+	BEGIN
+		Select * from Employees where Employee_Username = @username and Employee_Password = @password
+	END
+	else
+	BEGIN
+		return -1
+	END
+return
+
+go
+create or alter procedure CreateEmployee
+@Employee_ID int,
+@Employee_Name nchar(50),
+@username nchar(50), 
+@password nchar(128),
+@IsAdmin int
+as
+INSERT INTO TacoShop.dbo.Employees(Employee_ID,Employee_Name,Employee_Username,Employee_Password, IsAdmin)
+Values ( @Employee_ID, @Employee_Name,@username, @password, @IsAdmin )
 return

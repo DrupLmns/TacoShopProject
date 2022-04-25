@@ -43,12 +43,14 @@ namespace TacoShop1
             this.taxLabel = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.nametextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TacoButton
             // 
             this.TacoButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.TacoButton.Location = new System.Drawing.Point(71, 150);
+            this.TacoButton.Location = new System.Drawing.Point(67, 219);
             this.TacoButton.Name = "TacoButton";
             this.TacoButton.Size = new System.Drawing.Size(142, 92);
             this.TacoButton.TabIndex = 0;
@@ -59,7 +61,7 @@ namespace TacoShop1
             // BurritoButton
             // 
             this.BurritoButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BurritoButton.Location = new System.Drawing.Point(71, 262);
+            this.BurritoButton.Location = new System.Drawing.Point(67, 331);
             this.BurritoButton.Name = "BurritoButton";
             this.BurritoButton.Size = new System.Drawing.Size(142, 92);
             this.BurritoButton.TabIndex = 1;
@@ -80,7 +82,7 @@ namespace TacoShop1
             // WaterButton
             // 
             this.WaterButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WaterButton.Location = new System.Drawing.Point(287, 148);
+            this.WaterButton.Location = new System.Drawing.Point(283, 217);
             this.WaterButton.Name = "WaterButton";
             this.WaterButton.Size = new System.Drawing.Size(168, 97);
             this.WaterButton.TabIndex = 3;
@@ -101,7 +103,7 @@ namespace TacoShop1
             // SodaButton
             // 
             this.SodaButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.SodaButton.Location = new System.Drawing.Point(287, 259);
+            this.SodaButton.Location = new System.Drawing.Point(283, 328);
             this.SodaButton.Name = "SodaButton";
             this.SodaButton.Size = new System.Drawing.Size(138, 98);
             this.SodaButton.TabIndex = 5;
@@ -113,7 +115,7 @@ namespace TacoShop1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("UD Digi Kyokasho N-B", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(33, 23);
+            this.label1.Location = new System.Drawing.Point(0, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(294, 31);
             this.label1.TabIndex = 6;
@@ -177,17 +179,41 @@ namespace TacoShop1
             // 
             // nametextBox
             // 
-            this.nametextBox.Location = new System.Drawing.Point(43, 67);
+            this.nametextBox.Location = new System.Drawing.Point(101, 158);
             this.nametextBox.Name = "nametextBox";
             this.nametextBox.Size = new System.Drawing.Size(322, 23);
             this.nametextBox.TabIndex = 13;
             this.nametextBox.Text = "Name of Order Here";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("UD Digi Kyokasho NP-B", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(185, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 24);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "user";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("UD Digi Kyokasho N-B", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(28, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 24);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Welcome Back:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.nametextBox);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.taxLabel);
@@ -226,6 +252,8 @@ namespace TacoShop1
         private System.Windows.Forms.Label taxLabel;
         private System.Windows.Forms.Label totalLabel;
         private System.Windows.Forms.TextBox nametextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

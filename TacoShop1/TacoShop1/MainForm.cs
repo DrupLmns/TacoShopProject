@@ -16,6 +16,7 @@ namespace TacoShop1
 {
     public partial class MainForm : Form
     {
+        User user;
         connectionObject con = new connectionObject();
 
         Form receipt = new ReceiptForm();
@@ -27,12 +28,27 @@ namespace TacoShop1
         Double Total;
         List<Item> receiptList = new List<Item>();
         
+        public void LoadUser(User u)
+        {
+            user = u;
+
+            if (user.getAdmin() == 1)
+            {
+                label2.Text = (user.getName() + "you are a Admin!");
+            }
+            else
+            {
+                label2.Text = (user.getName() + "!");
+            }
+        }
 
         public MainForm()
         {
             
             InitializeComponent();
             taxBox.Text = ("TAX (" + (TaxRate * 100) + "%):");
+
+            //con.CreateUser("Maggie","HomerSimpson420","McDonalds",1);
             
         }
 
@@ -92,7 +108,6 @@ namespace TacoShop1
             var list = new List<string>();
             Random IDgenerator = new Random();              
             string nameText = nametextBox.Text;
-            List<int> listsortedID = IDGeneratorList(IDgenerator);
 
             if (ReceiptBox.Items.Count != 0)
             {
@@ -113,19 +128,21 @@ namespace TacoShop1
                     con.Open();
 
                     //Assigning the int values from the list to the parameter 
-                    foreach (int IDnumber in listsortedID)
-                    {
-                        insert.Parameters["@ID"].Value = IDnumber;                     
-                    }
+                    //foreach (int IDnumber in listsortedID)
+                    //{
+                    //    insert.Parameters["@ID"].Value = IDnumber;                     
+                    //}
+                    insert.Parameters["@ID"].Value = IDgenerator;
                     
                     //This is for splitting the strings with a comma
                     foreach (string choice in ReceiptBox.Items) {
                         list = choice.Split(',').ToList();
                         foreach (string items in list) {
                             insert.Parameters["@choices"].Value = items;
-                            insert.ExecuteNonQuery();
+                            //insert.ExecuteReader();
                         }
-                    }                 
+                    }
+                    insert.ExecuteReader();
                     con.Close();                                  
                 }
                 MessageBox.Show("Records inserted succesfully.");
@@ -211,6 +228,16 @@ namespace TacoShop1
             }
 
             return listID;
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }
