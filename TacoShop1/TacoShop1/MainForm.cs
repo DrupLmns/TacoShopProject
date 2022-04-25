@@ -108,6 +108,8 @@ namespace TacoShop1
             var list = new List<string>();
             Random IDgenerator = new Random();              
             string nameText = nametextBox.Text;
+            int IDnumber;
+            IDnumber = IDgenerator.Next(30, 50); //You can change these parameters for the number limitations to whatever. This was just to ensure no duplicates for the trial run.
 
             if (ReceiptBox.Items.Count != 0)
             {
@@ -119,30 +121,22 @@ namespace TacoShop1
                 //Inserting parameter strings
                 using (SqlCommand insert = new SqlCommand(sqlstring, con))
                 {
-                    insert.Parameters.AddWithValue("@ID", SqlDbType.Int);
+                    insert.Parameters.AddWithValue("@ID", SqlDbType.Int).Value = IDnumber;
                     insert.Parameters.AddWithValue("@Name", SqlDbType.NChar).Value = nameText;
                     insert.Parameters.AddWithValue("@choices", SqlDbType.VarChar);                  
                     insert.Parameters.AddWithValue("@tax", SqlDbType.Money).Value = Tax;
                     insert.Parameters.AddWithValue("@tip", SqlDbType.Money).Value = placeHolderTip;
                     insert.Parameters.AddWithValue("@finaltotal", SqlDbType.Money).Value = Total;
                     con.Open();
-
-                    //Assigning the int values from the list to the parameter 
-                    //foreach (int IDnumber in listsortedID)
-                    //{
-                    //    insert.Parameters["@ID"].Value = IDnumber;                     
-                    //}
-                    insert.Parameters["@ID"].Value = IDgenerator;
-                    
+                   
                     //This is for splitting the strings with a comma
                     foreach (string choice in ReceiptBox.Items) {
                         list = choice.Split(',').ToList();
                         foreach (string items in list) {
-                            insert.Parameters["@choices"].Value = items;
-                            //insert.ExecuteReader();
+                            insert.Parameters["@choices"].Value = items;                           
                         }
-                    }
-                    insert.ExecuteReader();
+                    }   
+                    insert.ExecuteNonQuery();
                     con.Close();                                  
                 }
                 MessageBox.Show("Records inserted succesfully.");
@@ -210,25 +204,6 @@ namespace TacoShop1
             {
                 ReceiptBox.Items.Add(receiptList[i].name + " x" + receiptList[i].ammount + " $" + receiptList[i].price);
             }
-        }
-        
-            public List<int> IDGeneratorList(Random IDgenerator)
-        {
-
-            List<int> listID = new List<int>();
-            int IDnumber;
-
-            for (int i = 0; i < 2; i++)
-            {
-                do
-                {
-                    IDnumber = IDgenerator.Next(4, 20);
-                } while (!listID.Contains(IDnumber));
-                listID.Add(IDnumber);
-            }
-
-            return listID;
-
         }
 
         private void label2_Click(object sender, EventArgs e)
