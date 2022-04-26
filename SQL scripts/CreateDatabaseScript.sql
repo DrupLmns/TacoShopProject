@@ -152,3 +152,17 @@ as
 INSERT INTO TacoShop.dbo.Employees(Employee_ID,Employee_Name,Employee_Username,Employee_Password, IsAdmin)
 Values ( @Employee_ID, @Employee_Name,@username, @password, @IsAdmin )
 return
+
+go
+create or alter procedure CreateReceipt
+@ID int,
+@Name nchar(50),
+@choices varchar(50), 
+@tax money,
+@tip money,
+@finaltotal money
+as
+insert into TacoShop.dbo.Receipt(receipt_ID, customer_name, choices, tax, tip, full_price) 
+values(@ID, @Name, @choices, @tax, @tip, @finaltotal)
+return
+
