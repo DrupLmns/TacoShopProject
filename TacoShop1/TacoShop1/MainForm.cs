@@ -121,21 +121,19 @@ namespace TacoShop1
             {
                 
                 con = new SqlConnection(ConnectionString);
-
-                string sqlstring = "insert into TacoShop.dbo.Receipt(receipt_ID, customer_name, choices, tax, tip, full_price) values(@ID, @Name, @choices, @tax, @tip, @finaltotal)";
                  
                 //Inserting parameter strings
-                using (SqlCommand insert = new SqlCommand(sqlstring, con))
+                using (SqlCommand insert = new SqlCommand("CreateReceipt", con))
                 {
+                    insert.CommandType = CommandType.StoredProcedure;
                     insert.Parameters.AddWithValue("@ID", SqlDbType.Int).Value = IDnumber;
                     insert.Parameters.AddWithValue("@Name", SqlDbType.NChar).Value = nameText;
                     insert.Parameters.AddWithValue("@choices", SqlDbType.VarChar).Value = allItems;                  
                     insert.Parameters.AddWithValue("@tax", SqlDbType.Money).Value = Tax;
                     insert.Parameters.AddWithValue("@tip", SqlDbType.Money).Value = placeHolderTip;
                     insert.Parameters.AddWithValue("@finaltotal", SqlDbType.Money).Value = Total;
-                    con.Open();
-                      
-                    insert.ExecuteNonQuery();
+                    con.Open();                      
+                    insert.ExecuteReader();
                     con.Close();                                  
                 }
                 MessageBox.Show("Records inserted succesfully.");
