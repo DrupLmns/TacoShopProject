@@ -39,19 +39,21 @@ namespace TacoShop
             this.TAX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BackButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.receiptDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // searchInput
             // 
-            this.searchInput.Location = new System.Drawing.Point(377, 348);
+            this.searchInput.Location = new System.Drawing.Point(272, 361);
             this.searchInput.Name = "searchInput";
             this.searchInput.Size = new System.Drawing.Size(298, 23);
             this.searchInput.TabIndex = 0;
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(499, 377);
+            this.searchButton.Location = new System.Drawing.Point(381, 390);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 1;
@@ -73,12 +75,12 @@ namespace TacoShop
             this.TAX,
             this.TIP,
             this.TOTAL});
-            this.receiptDataGrid.Location = new System.Drawing.Point(168, 12);
+            this.receiptDataGrid.Location = new System.Drawing.Point(185, 12);
             this.receiptDataGrid.Name = "receiptDataGrid";
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.receiptDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.receiptDataGrid.RowTemplate.Height = 25;
-            this.receiptDataGrid.Size = new System.Drawing.Size(740, 311);
+            this.receiptDataGrid.Size = new System.Drawing.Size(487, 311);
             this.receiptDataGrid.TabIndex = 3;
             this.receiptDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.receiptDataGrid_CellContentClick);
             // 
@@ -118,11 +120,32 @@ namespace TacoShop
             this.TOTAL.Name = "TOTAL";
             this.TOTAL.Width = 64;
             // 
+            // BackButton
+            // 
+            this.BackButton.Location = new System.Drawing.Point(12, 12);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(146, 46);
+            this.BackButton.TabIndex = 4;
+            this.BackButton.Text = "<-- BACK";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(354, 343);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Enter Name or Receipt ID";
+            // 
             // ReceiptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 641);
+            this.ClientSize = new System.Drawing.Size(870, 641);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.receiptDataGrid);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.searchInput);
@@ -146,5 +169,7 @@ namespace TacoShop
         private System.Windows.Forms.DataGridViewTextBoxColumn TAX;
         private System.Windows.Forms.DataGridViewTextBoxColumn TIP;
         private System.Windows.Forms.DataGridViewTextBoxColumn TOTAL;
+        private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.Label label1;
     }
 }

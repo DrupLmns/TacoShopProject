@@ -34,6 +34,10 @@ namespace TacoShop
                 mainform.Show();
                 this.Hide();
             }
+            else
+            {
+                MessageBox.Show("No User found with username/password.", "Error.");
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)

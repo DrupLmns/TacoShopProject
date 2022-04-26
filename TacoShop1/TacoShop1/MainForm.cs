@@ -19,7 +19,7 @@ namespace TacoShop1
         User user;
         connectionObject con = new connectionObject();
 
-        Form receipt = new ReceiptForm();
+        
         
         string Item;
         Double BaseTotal;
@@ -39,6 +39,9 @@ namespace TacoShop1
             else
             {
                 label2.Text = (user.getName() + "!");
+
+                AdminLabel.Hide();
+                CreateUserButton.Hide();
             }
         }
 
@@ -149,7 +152,9 @@ namespace TacoShop1
         
         private void view_receipts_button_Click(object sender, EventArgs e)
         {
-            receipt.Show(this);
+            //this.Hide();
+            Form receipt = new ReceiptForm();
+            receipt.Show();
         }
 
         private void addMoney(Double m)
@@ -202,6 +207,10 @@ namespace TacoShop1
                 ReceiptBox.Items.Add(receiptList[i].name + " x" + receiptList[i].ammount + " $" + receiptList[i].price);
             }
         }
+        public static void OpenMainForm()
+        {
+            //this.Show();
+        }
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -211,6 +220,12 @@ namespace TacoShop1
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CreateUserButton_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
         }
     }
 }

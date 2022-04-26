@@ -45,6 +45,8 @@ namespace TacoShop1
             this.nametextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.CreateUserButton = new System.Windows.Forms.Button();
+            this.AdminLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TacoButton
@@ -207,11 +209,32 @@ namespace TacoShop1
             this.label3.Text = "Welcome Back:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // CreateUserButton
+            // 
+            this.CreateUserButton.Location = new System.Drawing.Point(454, 410);
+            this.CreateUserButton.Name = "CreateUserButton";
+            this.CreateUserButton.Size = new System.Drawing.Size(139, 28);
+            this.CreateUserButton.TabIndex = 16;
+            this.CreateUserButton.Text = "Create New Employee";
+            this.CreateUserButton.UseVisualStyleBackColor = true;
+            this.CreateUserButton.Click += new System.EventHandler(this.CreateUserButton_Click);
+            // 
+            // AdminLabel
+            // 
+            this.AdminLabel.AutoSize = true;
+            this.AdminLabel.Location = new System.Drawing.Point(497, 392);
+            this.AdminLabel.Name = "AdminLabel";
+            this.AdminLabel.Size = new System.Drawing.Size(49, 15);
+            this.AdminLabel.TabIndex = 17;
+            this.AdminLabel.Text = "(admin)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AdminLabel);
+            this.Controls.Add(this.CreateUserButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.nametextBox);
@@ -254,6 +277,8 @@ namespace TacoShop1
         private System.Windows.Forms.TextBox nametextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button CreateUserButton;
+        private System.Windows.Forms.Label AdminLabel;
     }
 }
 

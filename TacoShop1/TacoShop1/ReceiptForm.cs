@@ -7,11 +7,16 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using TacoShop;
+using TacoShop1;
 
 namespace TacoShop
 {
     public partial class ReceiptForm : Form
     {
+
+
+
         int cell = -1;
         connectionObject con = new connectionObject();
         public ReceiptForm()
@@ -68,6 +73,10 @@ namespace TacoShop
         private void receiptDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
         }
     }
 }
